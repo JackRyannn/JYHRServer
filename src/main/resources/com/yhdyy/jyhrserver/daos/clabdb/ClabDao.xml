@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhdyy.jyhrserver.daos.clabdb.ClabDao">
+    <resultMap id="JybgMap" type="com.yhdyy.jyhrserver.bos.JybgBo">
+        <result column="PatientID" jdbcType="VARCHAR" property="PatientID"/>
+        <result column="Visit_No" jdbcType="VARCHAR" property="Visit_No"/>
+        <result column="Visit_type" jdbcType="VARCHAR" property="Visit_type"/>
+        <result column="Test_sample_No" jdbcType="VARCHAR" property="Test_sample_No"/>
+        <result column="Electronic_aplc_No" jdbcType="VARCHAR" property="Electronic_aplc_No"/>
+        <result column="Outpatient_No" jdbcType="VARCHAR" property="Outpatient_No"/>
+        <result column="Inpatient_No" jdbcType="VARCHAR" property="Inpatient_No"/>
+        <result column="Test_report" jdbcType="VARCHAR" property="Test_report"/>
+        <result column="Ward_No" jdbcType="VARCHAR" property="Ward_No"/>
+        <result column="Bed_No" jdbcType="VARCHAR" property="Bed_No"/>
+        <result column="Phone" jdbcType="VARCHAR" property="Phone"/>
+        <result column="Age_years" jdbcType="VARCHAR" property="Age_years"/>
+        <result column="Age_month" jdbcType="VARCHAR" property="Age_month"/>
+        <result column="Patient_name" jdbcType="VARCHAR" property="Patient_name"/>
+        <result column="Review_phys_sign" jdbcType="VARCHAR" property="Review_phys_sign"/>
+        <result column="Review_phys_sign_code" jdbcType="VARCHAR" property="Review_phys_sign_code"/>
+        <result column="Reporting_phys_sign" jdbcType="VARCHAR" property="Reporting_phys_sign"/>
+        <result column="Reporting_phys_sign_code" jdbcType="VARCHAR" property="Reporting_phys_sign_code"/>
+        <result column="Test_phys_sign" jdbcType="VARCHAR" property="Test_phys_sign"/>
+        <result column="Test_phys_sign_code" jdbcType="VARCHAR" property="Test_phys_sign_code"/>
+        <result column="Test_technician_sign" jdbcType="VARCHAR" property="Test_technician_sign"/>
+        <result column="Test_technician_sign_code" jdbcType="VARCHAR" property="Test_technician_sign_code"/>
+        <result column="Gender_code" jdbcType="VARCHAR" property="Gender_code"/>
+        <result column="Gender_name" jdbcType="VARCHAR" property="Gender_name"/>
+        <result column="Patient_type_code" jdbcType="VARCHAR" property="Patient_type_code"/>
+        <result column="Test_report_date" jdbcType="TIMESTAMP" property="Test_report_date"/>
+        <result column="Test_category" jdbcType="INTEGER" property="Test_category"/>
+        <result column="Test_item_name" jdbcType="VARCHAR" property="Test_item_name"/>
+        <result column="Test_item_code" jdbcType="VARCHAR" property="Test_item_code"/>
+        <result column="Hr_result_code" jdbcType="VARCHAR" property="Hr_result_code"/>
+        <result column="Hr_result_name" jdbcType="VARCHAR" property="Hr_result_name"/>
+        <result column="Sample_category" jdbcType="VARCHAR" property="Sample_category"/>
+        <result column="Sample_name" jdbcType="VARCHAR" property="Sample_name"/>
+        <result column="Sample_status" jdbcType="VARCHAR" property="Sample_status"/>
+        <result column="Sample_dt" jdbcType="TIMESTAMP" property="Sample_dt"/>
+        <result column="Test_dt" jdbcType="TIMESTAMP" property="Test_dt"/>
+        <result column="Receiving_sample_dt" jdbcType="TIMESTAMP" property="Receiving_sample_dt"/>
+        <result column="Test_report_notes" jdbcType="VARCHAR" property="Test_report_notes"/>
+        <result column="Test_report_organization" jdbcType="VARCHAR" property="Test_report_organization"/>
+        <result column="Test_aplc_organization" jdbcType="VARCHAR" property="Test_aplc_organization"/>
+        <result column="Test_report_dept" jdbcType="VARCHAR" property="Test_report_dept"/>
+        <result column="Test_aplc_dept" jdbcType="VARCHAR" property="Test_aplc_dept"/>
+        <result column="Dept_name" jdbcType="VARCHAR" property="Dept_name"/>
+        <result column="Dept_code" jdbcType="VARCHAR" property="Dept_code"/>
+        <result column="Hospital_id" jdbcType="VARCHAR" property="Hospital_id"/>
+        <result column="Hospital_name" jdbcType="VARCHAR" property="Hospital_name"/>
+        <result column="Ward_name" jdbcType="VARCHAR" property="Ward_name"/>
+        <result column="Ward_code" jdbcType="VARCHAR" property="Ward_code"/>
+        <result column="System_ID" jdbcType="VARCHAR" property="System_ID"/>
+        <result column="Record_text" jdbcType="VARCHAR" property="Record_text"/>
+        <result column="Test_report" jdbcType="VARCHAR" property="Test_report"/>
+        <result column="Medical_record_number" jdbcType="VARCHAR" property="Medical_record_number"/>
+        <result column="Applicant" jdbcType="VARCHAR" property="Applicant"/>
+        <result column="Aboratory_name" jdbcType="VARCHAR" property="Aboratory_name"/>
+        <result column="Aboratory_address" jdbcType="VARCHAR" property="Aboratory_address"/>
+        <result column="Report_form_type" jdbcType="VARCHAR" property="Report_form_type"/>
+        <result column="Executive_department" jdbcType="VARCHAR" property="Executive_department"/>
+        <result column="Darcode" jdbcType="VARCHAR" property="Darcode"/>
+        <result column="Detection" jdbcType="VARCHAR" property="Detection"/>
+    </resultMap>
+
+    <resultMap id="JybgxqMap" type="com.yhdyy.jyhrserver.bos.JybgxqBo">
+        <result column="PatientID" jdbcType="VARCHAR" property="PatientID"/>
+        <result column="Test_report_date" jdbcType="TIMESTAMP" property="Test_report_date"/>
+        <result column="Visit_No" jdbcType="VARCHAR" property="Visit_No"/>
+        <result column="Visit_type" jdbcType="VARCHAR" property="Visit_type"/>
+        <result column="Test_sample_No" jdbcType="VARCHAR" property="Test_sample_No"/>
+        <result column="Electronic_aplc_No" jdbcType="VARCHAR" property="Electronic_aplc_No"/>
+        <result column="Outpatient_No" jdbcType="VARCHAR" property="Outpatient_No"/>
+        <result column="Inpatient_No" jdbcType="VARCHAR" property="Inpatient_No"/>
+        <result column="Test_report_No" jdbcType="VARCHAR" property="Test_report_No"/>
+        <result column="Test_method_name" jdbcType="VARCHAR" property="Test_method_name"/>
+        <result column="Test_quantitative_result" jdbcType="VARCHAR" property="Test_quantitative_result"/>
+        <result column="Test_quantitative_result_unit" jdbcType="VARCHAR" property="Test_quantitative_result_unit"/>
+        <result column="Test_result_code" jdbcType="VARCHAR" property="Test_result_code"/>
+        <result column="Test_result_name" jdbcType="VARCHAR" property="Test_result_name"/>
+        <result column="Test_item_code" jdbcType="VARCHAR" property="Test_item_code"/>
+        <result column="Test_item_name" jdbcType="VARCHAR" property="Test_item_name"/>
+        <result column="Hr_result_code" jdbcType="VARCHAR" property="Hr_result_code"/>
+        <result column="Hr_result_name" jdbcType="VARCHAR" property="Hr_result_name"/>
+        <result column="Range_high" jdbcType="VARCHAR" property="Range_high"/>
+        <result column="Range_low" jdbcType="VARCHAR" property="Range_low"/>
+        <result column="Range_text" jdbcType="VARCHAR" property="Range_text"/>
+        <result column="Result_status" jdbcType="VARCHAR" property="Result_status"/>
+        <result column="Sort_No" jdbcType="INTEGER" property="Sort_No"/>
+        <result column="abbreviation" jdbcType="VARCHAR" property="abbreviation"/>
+    </resultMap>
+
+    <select id="getJybgBo" resultMap="JybgMap">
+        SELECT TOP 10 *
+        FROM qkl_jybg
+    </select>
+
+
+    <select id="getJybgxqBo" resultMap="JybgxqMap">
+        SELECT TOP 10 *
+        FROM qkl_jybgxq
+    </select>
+
+
+</mapper>

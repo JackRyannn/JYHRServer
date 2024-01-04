@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhdyy.jyhrserver.daos.chisdb.ChisDao">
+    <resultMap id="HzjbxxMap" type="com.yhdyy.jyhrserver.bos.HzjbxxBo">
+        <result column="EMPI" jdbcType="VARCHAR" property="EMPI"/>
+        <result column="PatientID" jdbcType="VARCHAR" property="PatientID"/>
+        <result column="Patient_name" jdbcType="VARCHAR" property="Patient_name"/>
+        <result column="ID_category" jdbcType="VARCHAR" property="ID_category"/>
+        <result column="ID_No" jdbcType="VARCHAR" property="ID_No"/>
+        <result column="Gender_code" jdbcType="VARCHAR" property="Gender_code"/>
+        <result column="Birthday" jdbcType="VARCHAR" property="Birthday"/>
+        <result column="Nation" jdbcType="VARCHAR" property="Nation"/>
+        <result column="Residential_address" jdbcType="VARCHAR" property="Residential_address"/>
+        <result column="Residential_address2" jdbcType="VARCHAR" property="Residential_address2"/>
+        <result column="Census_register_address" jdbcType="VARCHAR" property="Census_register_address"/>
+        <result column="Marital_status_code" jdbcType="VARCHAR" property="Marital_status_code"/>
+        <result column="Occupation" jdbcType="VARCHAR" property="Occupation"/>
+        <result column="ABO_blood_group_code" jdbcType="VARCHAR" property="ABO_blood_group_code"/>
+        <result column="Academic_code" jdbcType="VARCHAR" property="Academic_code"/>
+        <result column="Rh_blood_group_code" jdbcType="VARCHAR" property="Rh_blood_group_code"/>
+        <result column="Filing_date" jdbcType="VARCHAR" property="Filing_date"/>
+        <result column="Filing_name" jdbcType="VARCHAR" property="Filing_name"/>
+        <result column="Filing_type" jdbcType="VARCHAR" property="Filing_type"/>
+        <result column="Family_Id" jdbcType="VARCHAR" property="Family_Id"/>
+        <result column="Patient_rela_code" jdbcType="VARCHAR" property="Patient_rela_code"/>
+        <result column="Hospital_id" jdbcType="VARCHAR" property="Hospital_id"/>
+        <result column="Hospital_system_id" jdbcType="VARCHAR" property="Hospital_system_id"/>
+        <result column="Patient_subsystem_id" jdbcType="VARCHAR" property="Patient_subsystem_id"/>
+        <result column="Patient_subsystem_type" jdbcType="VARCHAR" property="Patient_subsystem_type"/>
+        <result column="Subsystemid_merge_date" jdbcType="VARCHAR" property="Subsystemid_merge_date"/>
+        <result column="Subsystemid_merge_operator" jdbcType="VARCHAR" property="Subsystemid_merge_operator"/>
+        <result column="Subsystemid_merge_status" jdbcType="VARCHAR" property="Subsystemid_merge_status"/>
+        <result column="HIS_EMPI" jdbcType="VARCHAR" property="HIS_EMPI"/>
+        <result column="Gender_name" jdbcType="VARCHAR" property="Gender_name"/>
+        <result column="Hospital_name" jdbcType="VARCHAR" property="Hospital_name"/>
+    </resultMap>
+
+    <select id="getHzjbxx" resultMap="HzjbxxMap">
+        SELECT TOP 10 *
+        FROM qkl_hzjbxx
+    </select>
+
+
+</mapper>
