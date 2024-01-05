@@ -31,7 +31,7 @@ public class HzjbxxBo {
     public String Hospital_system_id ;
     public String Patient_subsystem_type ;
     public String Patient_subsystem_id ;
-    public Date Subsystemid_merge_date ;
+    public String Subsystemid_merge_date ;
     public String Subsystemid_merge_operator ;
     public String Subsystemid_merge_status ;
     public String HIS_EMPI ;
