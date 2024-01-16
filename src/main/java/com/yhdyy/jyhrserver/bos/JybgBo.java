@@ -63,6 +63,6 @@ public class JybgBo {
     public String Aboratory_address;
     public String Report_form_type;
     public String Executive_department;
-    public String Darcode;
+    public String Barcode;
     public String Detection;
 }

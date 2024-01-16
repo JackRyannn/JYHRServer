@@ -13,20 +13,20 @@ public class JyhrController {
     private JyhrService jyhrService;
 
     @RequestMapping(value = "/uploadHzjbxx", method = RequestMethod.GET)
-    public void uploadHzjbxx() {
+    public void uploadHzjbxx(String startTime) {
         System.out.println("uploadHzjbxx");
-        jyhrService.hzjbxx();
+        jyhrService.hzjbxx(startTime);
     }
 
     @RequestMapping(value = "/uploadJybg", method = RequestMethod.GET)
-    public void uploadJybg() {
+    public void uploadJybg(String startTime) {
         System.out.println("uploadJybg");
-        jyhrService.jybg();
+        jyhrService.jybg(startTime);
     }
 
     @RequestMapping(value = "/uploadJybgxq", method = RequestMethod.GET)
-    public void uploadJybgxq() {
+    public void uploadJybgxq(String startTime) {
         System.out.println("uploadJybgxq");
-        jyhrService.jybgxq();
+        jyhrService.jybgxq(startTime);
     }
 }

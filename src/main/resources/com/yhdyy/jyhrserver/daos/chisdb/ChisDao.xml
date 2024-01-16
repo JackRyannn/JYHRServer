@@ -18,7 +18,7 @@
         <result column="ABO_blood_group_code" jdbcType="VARCHAR" property="ABO_blood_group_code"/>
         <result column="Academic_code" jdbcType="VARCHAR" property="Academic_code"/>
         <result column="Rh_blood_group_code" jdbcType="VARCHAR" property="Rh_blood_group_code"/>
-        <result column="Filing_date" jdbcType="VARCHAR" property="Filing_date"/>
+        <result column="Filing_date" jdbcType="TIMESTAMP" property="Filing_date"/>
         <result column="Filing_name" jdbcType="VARCHAR" property="Filing_name"/>
         <result column="Filing_type" jdbcType="VARCHAR" property="Filing_type"/>
         <result column="Family_Id" jdbcType="VARCHAR" property="Family_Id"/>
@@ -36,8 +36,9 @@
     </resultMap>
 
     <select id="getHzjbxx" resultMap="HzjbxxMap">
-        SELECT TOP 10 *
+        SELECT *
         FROM qkl_hzjbxx
+        WHERE visit_date > #{startTime}
     </select>
 
 

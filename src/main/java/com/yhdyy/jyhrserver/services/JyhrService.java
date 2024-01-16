@@ -1,18 +1,16 @@
 package com.yhdyy.jyhrserver.services;
 
 import com.google.gson.Gson;
-import com.yhdyy.jyhrserver.bos.HzjbxxBo;
-import com.yhdyy.jyhrserver.bos.JybgBo;
-import com.yhdyy.jyhrserver.bos.JybgxqBo;
-import com.yhdyy.jyhrserver.bos.MsgRequestBody;
+import com.google.gson.GsonBuilder;
+import com.yhdyy.jyhrserver.bos.*;
 import com.yhdyy.jyhrserver.client.NetService;
 import com.yhdyy.jyhrserver.daos.chisdb.ChisDao;
 import com.yhdyy.jyhrserver.daos.clabdb.ClabDao;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
@@ -20,6 +18,7 @@ import java.net.URLEncoder;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Slf4j
@@ -35,6 +34,7 @@ public class JyhrService {
     private static final String METHOD_HZJBXX = "BatchSavePatient";
     private static final String METHOD_JYBG = "BatchSavePatientReport";
     private static final String METHOD_JYBGXQ = "BatchSavePatientReportDetail";
+    private static final String PLACEHOLDER = "-";
 
     /**
      * RSA最大加密明文大小`
@@ -53,30 +53,50 @@ public class JyhrService {
     private static final String HOSPITAL_ID = "ytyhd_001";//对接时分配的医院编码
 //    static String idcardno = "370631195805066546";
 
-    Gson gson = new Gson();
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
-    public void hzjbxx(){
-        log.info("hzjbxx start");
-        List<HzjbxxBo> list = chisDao.getHzjbxx();
-        String dataList = gson.toJson(list);
-        send(dataList,METHOD_HZJBXX);
+    @Scheduled(cron = "0 0/10 * * * ?")
+    public void doSchedule() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String startTime = sdf.format(new Date(new Date().getTime() - 600000));
+        log.info("doSchedule,starttime:" + startTime);
+        hzjbxx(startTime);
+        jybg(startTime);
+        jybgxq(startTime);
     }
 
-    public void jybg(){
-        log.info("jybg start");
-        List<JybgBo> list = clabDao.getJybgBo();
+    public void hzjbxx(String startTime) {
+        List<HzjbxxBo> list = chisDao.getHzjbxx(startTime);
         String dataList = gson.toJson(list);
-        send(dataList,METHOD_JYBG);
+        send(dataList, METHOD_HZJBXX);
     }
 
-    public void jybgxq(){
-        log.info("jybgxq start");
-        List<JybgxqBo> list = clabDao.getJybgxqBo();
+    public void jybg(String startTime) {
+        List<JybgBo> list = clabDao.getJybgBo(startTime);
+        list.forEach(item -> {
+            if (item.getPhone().isEmpty()) {
+                item.setPhone(PLACEHOLDER);
+            }
+        });
         String dataList = gson.toJson(list);
-        send(dataList,METHOD_JYBGXQ);
+        send(dataList, METHOD_JYBG);
     }
 
-    public void send(String dataList,String methodName) {
+    public void jybgxq(String startTime) {
+        List<JybgxqBo> list = clabDao.getJybgxqBo(startTime);
+        list.forEach(item -> {
+            if ("%".equals(item.getTest_quantitative_result_unit())) {
+                item.setTest_quantitative_result_unit("%25");
+            }
+            if(item.getTest_quantitative_result().isEmpty()){
+                item.setTest_quantitative_result(PLACEHOLDER);
+            }
+        });
+        String dataList = gson.toJson(list);
+        send(dataList, METHOD_JYBGXQ);
+    }
+
+    public void send(String dataList, String methodName) {
 
 //        log.info("json dataList:" + dataList);
 
@@ -94,28 +114,36 @@ public class JyhrService {
             //3.rsa加密
             encryptStr = encrypt(content + "&sign=" + sign, COMMON_PUBLIC_KEY);//文档中提供的固定公钥
         } catch (Exception e) {
-            log.error("encrypt error",e);
+            log.error("encrypt error", e);
         }
         String param_info = URLEncoder.encode(encryptStr);
 
         //4.构建requestBody
-        MsgRequestBody requestBody = new MsgRequestBody();
+        RequestBo requestBody = new RequestBo();
         requestBody.setId("1");
         requestBody.setJsonrpc("2.0");
         requestBody.setMethod(methodName);
 
-        List<MsgRequestBody.Param> paramList = new ArrayList<>();
-        MsgRequestBody.Param param = new MsgRequestBody.Param();
+        List<RequestBo.Param> paramList = new ArrayList<>();
+        RequestBo.Param param = new RequestBo.Param();
         param.setParam_info(param_info);
         param.setHospital_id(HOSPITAL_ID);
         paramList.add(param);
         requestBody.setParams(paramList);
 
         String jsonBody = gson.toJson(requestBody);
-        log.info("jsonBody:" + jsonBody);
+//        log.info("jsonBody:" + jsonBody);
         //5.post请求
         String ret = netService.batchSavePatient(jsonBody);
         log.info("ret:" + ret);
+        ResponseBo response = gson.fromJson(ret, ResponseBo.class);
+        if (response.isResult()) {
+            log.debug("UPLOAD_SUCCESS------" + methodName);
+        } else {
+            log.debug("UPLOAD_FAILURE------" + methodName);
+
+        }
+
     }
 
 

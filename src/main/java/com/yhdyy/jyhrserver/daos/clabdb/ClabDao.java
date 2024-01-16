@@ -6,6 +6,6 @@ import com.yhdyy.jyhrserver.bos.JybgxqBo;
 import java.util.List;
 
 public interface ClabDao {
-    List<JybgBo> getJybgBo();
-    List<JybgxqBo> getJybgxqBo();
+    List<JybgBo> getJybgBo(String startTime);
+    List<JybgxqBo> getJybgxqBo(String startTime);
 }

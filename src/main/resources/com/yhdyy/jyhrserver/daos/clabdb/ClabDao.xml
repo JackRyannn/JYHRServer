@@ -59,7 +59,7 @@
         <result column="Aboratory_address" jdbcType="VARCHAR" property="Aboratory_address"/>
         <result column="Report_form_type" jdbcType="VARCHAR" property="Report_form_type"/>
         <result column="Executive_department" jdbcType="VARCHAR" property="Executive_department"/>
-        <result column="Darcode" jdbcType="VARCHAR" property="Darcode"/>
+        <result column="Barcode" jdbcType="VARCHAR" property="Barcode"/>
         <result column="Detection" jdbcType="VARCHAR" property="Detection"/>
     </resultMap>
 
@@ -91,14 +91,16 @@
     </resultMap>
 
     <select id="getJybgBo" resultMap="JybgMap">
-        SELECT TOP 10 *
+        SELECT *
         FROM qkl_jybg
+        WHERE Test_report_date > #{startTime}
     </select>
 
 
     <select id="getJybgxqBo" resultMap="JybgxqMap">
-        SELECT TOP 10 *
+        SELECT *
         FROM qkl_jybgxq
+        WHERE Test_report_date > #{startTime}
     </select>
 
 

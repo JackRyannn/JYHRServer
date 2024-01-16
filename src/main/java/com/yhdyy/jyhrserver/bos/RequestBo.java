@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class MsgRequestBody implements Serializable {
-    public MsgRequestBody() {
+public class RequestBo implements Serializable {
+    public RequestBo() {
     }
 
     /**

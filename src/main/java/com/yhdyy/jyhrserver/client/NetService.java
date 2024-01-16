@@ -6,6 +6,7 @@ import java.util.Map;
 
 public interface NetService {
     @Post("http://11.65.10.136:8085/api/recognitionhospital/cdrDocIndex")
+    @LogEnabled(logRequest = false)
     String batchSavePatient(@JSONBody String body);
 
 }
